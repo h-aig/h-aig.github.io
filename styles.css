@@ -9,5 +9,18 @@
   font-weight: bold;
 }
 
+@font-face {
+  font-family: CaskaydiaCove;
+  src: url(CaskaydiaCoveNerdFont-BoldItalic.ttf);
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: CaskaydiaCove;
+  src: url(CaskaydiaCoveNerdFont-Italic.ttf);
+  font-style: italic;
+}
+
 h1 {font-family: CaskaydiaCove;}
 * {font-family: CaskaydiaCove;}
