@@ -9,6 +9,10 @@
   font-weight: bold;
 }
 
+p {
+  font-family: CaskaydiaCove;
+}
+
 h1 {
   font-family: CaskaydiaCove;
 }
@@ -18,9 +22,7 @@ div {
   font-family: CaskaydiaCove;
 }
 
-p {
-  font-family: CaskaydiaCove;
-}
+
 
 
 
