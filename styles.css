@@ -3,10 +3,6 @@
   src: url(CaskaydiaCoveNerdFont-Regular.ttf);
 }
 
-@font-face {
-  font-family: CaskaydiaCove;
-  src: url(CaskaydiaCoveNerdFont-Bold.ttf);
-  font-weight: bold;
-}
 
-div {font-family: CaskaydiaCove}
+
+* {font-family: CaskaydiaCove}
