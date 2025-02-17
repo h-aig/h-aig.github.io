@@ -1,12 +1,12 @@
-@font-face {
+font-face {
   font-family: CaskaydiaCove;
   src: url(CaskaydiaCoveNerdFont-Regular.ttf);
 }
 
-@font-face {
+font-face {
   font-family: CaskaydiaCove;
   src: url(CaskaydiaCoveNerdFont-Bold.ttf);
   font-weight: bold;
 }
 
-* {font-family: CaskaydiaCove}
+h1 {font-family: CaskaydiaCove}
