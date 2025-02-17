@@ -1,0 +1,18 @@
+@font-face {
+  font-family: CaskaydiaCove;
+  src: url(CaskaydiaCoveNerdFont-Regular.ttf);
+}
+
+div {
+  font-family: CaskaydiaCove;
+}
+
+@font-face {
+  font-family: myFirstFont;
+  src: url(CaskaydiaCoveNerdFont-Bold.ttf);
+  font-weight: bold;
+}
+
+p {
+  font-family: myFirstFont, sans-serif;
+}
