@@ -13,11 +13,16 @@ h1 {
   font-family: CaskaydiaCove;
 }
 
+
 div {
   font-family: CaskaydiaCove;
 }
 
 p {
-  font-family: myFirstFont, sans-serif;
+  font-family: CaskaydiaCove;
+}
+
+p {
+  font-family: backupFont, sans-serif;
 }
 
