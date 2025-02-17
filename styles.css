@@ -1,24 +1,24 @@
 @font-face {
   font-family: CaskaydiaCove;
-  src: url(CaskaydiaCoveNerdFont-Regular.ttf);
+  src: url(fonts/CaskaydiaCoveNerdFont-Regular.ttf);
 }
 
 @font-face {
   font-family: CaskaydiaCove;
-  src: url(CaskaydiaCoveNerdFont-Bold.ttf);
+  src: url(fonts/CaskaydiaCoveNerdFont-Bold.ttf);
   font-weight: bold;
 }
 
 @font-face {
   font-family: CaskaydiaCove;
-  src: url(CaskaydiaCoveNerdFont-BoldItalic.ttf);
+  src: url(fonts/CaskaydiaCoveNerdFont-BoldItalic.ttf);
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: CaskaydiaCove;
-  src: url(CaskaydiaCoveNerdFont-Italic.ttf);
+  src: url(fonts/CaskaydiaCoveNerdFont-Italic.ttf);
   font-style: italic;
 }
 
