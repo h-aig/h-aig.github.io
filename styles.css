@@ -7,6 +7,9 @@ div {
   font-family: CaskaydiaCove;
 }
 
+h1 {
+  font-family: CaskaydiaCove;
+}
 
 @font-face {
   font-family: myFirstFont;
@@ -18,6 +21,3 @@ p {
   font-family: myFirstFont, sans-serif;
 }
 
-h1 {
-  font-family: CaskaydiaCove;
-}
