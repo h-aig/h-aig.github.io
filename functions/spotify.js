@@ -37,12 +37,15 @@ exports.handler = async (event, context) => {
       },
     });
 
-    // Log and return the Spotify response
-    console.log(playerResponse.data);
+    // Grab the most recent song from the response data (first item in the array)
+    const mostRecentTrack = playerResponse.data.items[0];
+
+    // Log and return only the most recent song
+    console.log(mostRecentTrack);
 
     return {
       statusCode: 200,
-      body: JSON.stringify(playerResponse.data),
+      body: JSON.stringify(mostRecentTrack), // Send only the most recent track
     };
   } catch (error) {
     console.error('Error:', error);
