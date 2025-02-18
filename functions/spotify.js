@@ -1,70 +1,54 @@
-const fetch = require('node-fetch');
+const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
 
 exports.handler = async (event, context) => {
-  // 1. Fetch Spotify Access Token Using Refresh Token Grant
+  try {
+    // Get the refresh token we stored as an environment variable
+    const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
 
-  // Get the refresh token from the environment variables.
-  const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
+    // Do the base64 encoding we did earlier but with Node tools
+    const auth = Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64');
 
-  // Encode the client ID and secret in base64.
-  const auth = Buffer.from(
-    `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
-  ).toString("base64");
+    // Store the Spotify API endpoint for readability
+    const tokenEndpoint = `https://accounts.spotify.com/api/token`;
 
-  // Spotify API token endpoint.
-  const tokenEndpoint = "https://accounts.spotify.com/api/token";
+    const options = {
+      method: 'POST',
+      headers: {
+        Authorization: `Basic ${auth}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      data: `grant_type=refresh_token&refresh_token=${refreshToken}&redirect_uri=${encodeURI(
+        process.env.URL + '/.netlify/functions/callback'
+      )}`,
+    };
 
-  // Prepare options for the POST request.
-  const options = {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${auth}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: `grant_type=refresh_token&refresh_token=${refreshToken}&redirect_uri=${encodeURI(
-      process.env.URL + "/.netlify/functions/callback"
-    )}`,
-  };
+    // Get the access token
+    const tokenResponse = await axios(tokenEndpoint, options);
+    const accessToken = tokenResponse.data.access_token;
 
-  // Retrieve the access token.
-  const accessToken = await fetch(tokenEndpoint, options)
-    .then((res) => res.json())
-    .then((json) => {
-      return json.access_token;
-    })
-    .catch((err) => {
-      console.error("Error fetching access token:", err);
+    // Request recently played songs
+    const playerEndpoint = `https://api.spotify.com/v1/me/player/recently-played`;
+
+    const playerResponse = await axios.get(playerEndpoint, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
 
-  // 2. Fetch The Most Recent Song
+    // Log and return the Spotify response
+    console.log(playerResponse.data);
 
-  // Define the endpoint for the recently played songs.
-  const playerEndpoint = "https://api.spotify.com/v1/me/player/recently-played";
-
-  // Make a GET request to the Spotify API (limit=1 returns the most recent song).
-  return fetch(`${playerEndpoint}?limit=1`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  })
-    .then((res) => res.json())
-    .then((json) => {
-      // Optionally log the response.
-      console.log("Spotify response:", json);
-      // Return a valid Netlify function response.
-      return {
-        statusCode: 200,
-        body: JSON.stringify(json),
-      };
-    })
-    .catch((err) => {
-      console.error("Error fetching song:", err);
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: "Error fetching song" }),
-      };
-    });
+    return {
+      statusCode: 200,
+      body: JSON.stringify(playerResponse.data),
+    };
+  } catch (error) {
+    console.error('Error:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Something went wrong!' }),
+    };
+  }
 };
