@@ -1,0 +1,23 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "I honestly don't even know",
+  "homepage": "https://github.com/h-aig/h-aig.github.io#readme",
+  "bugs": {
+    "url": "https://github.com/h-aig/h-aig.github.io/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h-aig/h-aig.github.io.git"
+  },
+  "license": "ISC",
+  "author": "Henry",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
